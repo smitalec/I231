@@ -1,0 +1,108 @@
+Title         : Homework 0
+Title Note    : Due on Sept 7 Wednesday
+Author        : Alec Smith
+Logo          : False
+
+[TITLE]
+
+# Basic Text Typewriting 
+
+Here is a list:
+
+* Item 1 
+* Item 2 
+* Item 3 
+* subscripting: Black~pit~; superscripting: Blue^sky^
+
+This is a **Boldface words**. Newly introduced notion will be emphasized in italic font such as *group theory*. We could also add boldface to it, e.g., ***group theory***.
+
+Mathematics can be inlined like *E = mc^2^*. Or, they can be elegantly presented in standalone blocks like below:
+~ Equation { #euler-thm }
+e = \lim_{n\to\infty} \left( 1 + \frac{1}{n} \right)^n
+~ 
+
+The above theorem can be referenced as Equation [(1)](#euler-thm). We may prove it as a theorem:
+
+~ Theorem { #th-euler; caption:"Euler's theorem" }
+If *n* and *a* are positive integers and *gcd(n,a) = 1*, then 
+~
+~ Equation { #euler-thm2 }
+a^{(n)} = 1  mod  n
+~
+~ { font-family:"MS Gothic"}
+&#934;
+~
+
+
+# Basics of typesetting code 
+
+Below is a Javascript program snippet   
+``` javascript
+function hello() {
+  return "hello world!"
+}
+```
+
+Here is the Java code we mentioned in the first lecture:
+
+``` javascript
+  int total = 0;
+  for (int i = 1; i <= 10; i++)
+    total = total + i;
+```
+
+And typing up Haskell is as easy:
+
+``` Haskell
+  f :: [Int] -> [Int]
+  f []     = []
+  f (x:xs) = f ys ++ [x] ++ f zs
+    where
+      ys = [a | a  xs, a  x]
+      zs = [b | b  xs, b > x]
+```
+
+
+~ Note
+The syntax highlighting works in the PDF output too.
+~
+
+# Practice Save and Load.
+
+Synchronize and Pull your ongoing work (from github) as you are editing it. 
+
+# More Reading
+
+Read Section 3 and 4 of Madoko reference manual. Describe two of your favorite features that we didn't mention in class.
+
+`
+One interesting feature is that we have the ability to place images directly on our documents. We can also create very intricate graphs and charts to help visualize mathematics.
+`
+
+# Hands-On
+
+Install the Haskell platform and try out examples we talked in class.
+Note down two of your favorite trials (you are especially encouraged to
+try out things we haven't talked about in class). You can copy the command line text-scripts and paste them between two lines of (identical number of) consecutive backquotes.
+`
+$ ghci
+GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help
+Prelude λ> 
+`
+
+If you want nicer formatting, you could use
+```  {padding-left:1ex; padding-right:1ex; padding-top:.75ex; padding-bottom:.25ex; background-color:black; color:white; font-size:14pt }
+$ ghci
+GHCi, version 7.10.3: http://www.haskell.org/ghc/  :? for help
+Prelude λ> 
+```
+
+```  {padding-left:1ex; padding-right:1ex; padding-top:.75ex; padding-bottom:.25ex; background-color:black; color:white; font-size:14pt }
+Prelude> sum[1..100]
+5050
+```
+
+```  {padding-left:1ex; padding-right:1ex; padding-top:.75ex; padding-bottom:.25ex; background-color:black; color:white; font-size:14pt }
+Prelude> product[6,7,8,9]
+3024
+```
