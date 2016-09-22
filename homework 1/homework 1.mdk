@@ -1,0 +1,154 @@
+Title         : Homework 1
+Title Note    : Due on Sept 21 Wednesday
+Author        : Alec Smith
+Email         : smitalec@indiana.edu
+Doc class     : [11pt]article
+
+~ MathDefs
+\newcommand{\jacobi}[2]{\ensuremath{\left(\frac{#1}{#2}\right)}}
+~
+
+
+[TITLE]
+
+# Induction on Integers
+Prove that $\forall n \in \mathbb{N}$,
+~ Equation { #euler-thm }
+3+3^2+\cdots+3^n=\frac{3^{n+1}-3}{2}
+~ 
+**Proof:**\
+*Base Step:* if $n = 1$, LHS: 3 RHS: 3\
+*Inductive Hypothesis:* there exists integer k such that $n <= k$, \
+~ Equation
+3+3^2+\cdots+3^n=\frac{3^{n+1}-3}{2}
+~
+*Inductive Step:* $n = k + 1$
+*LHS:*
+~ Equation
+3+3^2+\cdots+3^k+3^{k+1}=\frac{3^{k+2}-3}{2}
+~
+~ Equation
+\frac{1}{2}(3^{k+2}-3)
+~
+~ Equation
+3(\frac{1}{2})(1^{k+2}-1)
+~
+~ Equation
+\frac{3}{2}(1^{k+2}-1)
+~
+\
+\
+
+# Structural Induction
+A set $S$ is defined as follows:\
+(1)  $2\in S$\
+(2)  if $x,y\in S$, then $2(x+y)\in S$.\
+(3)  if $x,y\in S$, then $xy \in S$.\
+Prove that if $x\in S$ and $x\not=2$, then $x$ is divisible by 4.
+\
+\
+**Proof:**\
+*Base Step:* $2 \in S$\
+*Inductive Hypothesis:* $x,y \in S \in$\
+*Inductive Step:* $if x,y \in S,$ then $2(x + y) \in P$ & $xy \in P$ because $x,y \in S$\
+So, $\exists n$~1~$, n$~2~$ \in \mathbb{Z}^+$, such that $2n$~1~$ = x$ and $2n$~2~$=y$\
+$x + y = 2n$~1~$ + 2n$~2~$ = 2(n$~1~$ + n$~2~$) \in P$ because $n$~1~$ + n$~2~$ \in \mathbb{Z}^+$\
+$x * y = 2n$~1~$ * 2n$~2~$ = 4(n$~1~$ * n$~2~$) \in P$
+\
+\
+\
+
+# $\lambda$-Calculus
+Reduce the following $\lambda$-terms to their normal form:\
+(1) $(\lambda a b c . c b a)zz(\lambda x y . x)$\
+(2) $(\lambda z . z)(\lambda z . z z)(\lambda z . z y)$\
+(3) $(\lambda y. ((\lambda x. y(xx)) (\lambda x. y(xx)))) (\lambda x.x)$
+\
+\
+**Answer:**\
+(1) $zz(\lambda x y . x))$\
+(2) $yy$\
+(3) $(\lambda x . (\lambda x . x) (xx))(\lambda x . (\lambda x . x) (xx))$
+\
+\
+
+# Operator Precedence and Associativity
+What does `3 @@ 5 @@ 7 + 1` evaluate to under the following three definitions? Explain.\
+(1) 
+~ Framed {padding:1ex 1ex; width:400px}
+``` haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infixl 3 @@
+(@@) = multThenInc
+```
+~
+
+(2) 
+~ Framed {padding:1ex 1ex; width:400px}
+``` haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infixr 3 @@
+(@@) = multThenInc
+```
+~
+
+(3)
+~ Framed {padding:"1ex 1ex"; width:400px}
+``` haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infixl 7 @@
+(@@) = multThenInc
+```
+~
+
+(4)
+~ Framed {padding:"1ex 1ex"; width:400px}
+``` haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infixr 7 @@
+(@@) = multThenInc
+```
+~
+
+(5)
+~ Framed {padding:"1ex 1ex"; width:400px}
+``` haskell
+multThenInc :: Int -> Int -> Int
+multThenInc x y = x * y + 1
+
+infix 5 @@
+(@@) = multThenInc
+```
+~
+**Answer:**\
+(1) $3 @@ 5 @@ (7 + 1)$\
+    $(3 @@ 5) @@ 8$\
+    $129$\
+    
+(2) $3 @@ 5 @@ (7 + 1)$\
+    $3 @@ 5 @@ 8$\
+    $3 @@ 41$\
+    $124$\
+    
+(3) $(3 @@ 5) @@ 7 + 1$\
+    $16 @@ 7 + 1$\
+    $113 + 1$\
+    $114$\
+    
+(4) $3 @@ (5 @@ 7) + 1$\
+    $(3 @@ 36) + 1$\
+    $110$\
+    
+(5) $3 @@ 5 @@ 7 + 1$\
+    $3 @@ 5 @@ 8$\
+    $error$
+\
+\
