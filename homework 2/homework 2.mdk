@@ -1,0 +1,151 @@
+Title         : Homework 2
+Title Note    : Due on Oct 5 Wednesday
+Author        : Alec Smith
+Email         : smitalec@indiana.edu
+Doc class     : [11pt]article
+
+~ MathDefs
+\newcommand{\jacobi}[2]{\ensuremath{\left(\frac{#1}{#2}\right)}}
+~
+
+
+[TITLE]
+
+# What are the types of the following values?
+a. [’a’,’b’,’c’]\
+[Char, Char, Char]
+
+- (’a’,’b’,’c’)\
+(Char, Char, Char)
+
+- [(False,’0’),(True,’1’)]\
+[(Bool, Char), (Bool, Char)]
+
+- ([False,True],[’0’,’1’])\
+[(Bool, Bool), (Char, Char)]
+
+- [tail,init,reverse]\
+[function, function, function]
+
+
+
+# What are the types of the following functions?
+a. second xs = head (tail xs)\
+ [a]->a ([a]->[a])
+
+- swap (x,y) = (y,x)\
+(t1, t) -> (t, t1)
+
+- pair x y = (x,y)\
+t -> t1 -> (t, t1)
+
+- double x = x*2\
+Num a => a -> a
+
+- palindrome xs = reverse xs == xs\
+Eq a => [a] -> Bool
+
+- twice f x = f (f x)\
+(t -> t) -> t -> t
+\
+
+# Types and Typeclasses
+
+a. What functions define the typeclasses `Real` and `Integral`,
+respectively? Read the documentation (find them either
+through [Hayoo](http://hayoo.fh-wedel.de)
+or [Hoogle](https://www.haskell.org/hoogle/)) of these functions and try
+invoking each of them in `ghci`. Show your trials and explain in English
+what the functions do.\\
+
+Real :: class (Num a, Ord a) => Real a\
+Integral :: (Integral a, Integral b) => Prism Integer Integer a b 
+
+- What are the example types that are instances of `Real` and `Integral`,
+  respectively. Try invoking the `Real` and `Integral` functions on
+  values of the example types that you give.\\
+``` haskell
+binary :: Integral a => Prism' String a
+binary = base 2
+```
+``` haskell
+real :: Complexable c => c (RealOf t) -> c t 
+```  
+  
+- Define a function `f` as follows:
+``` haskell
+f x = toRational $ rem x 5
+```
+  i. What is `f`'s type?\
+   Integral a => a -> Rational
+   
+  - Describe how would your Haskell compiler/interpreter infer `f`'s type.\
+  It would see that f x == f(x) and recognize that f is an integral containing variable x.
+\
+
+# Functions
+
+a. Redefine the following version of (&&) using _conditionals_ rather than patterns:
+``` haskell
+  True && True = True
+  _    && _    = False
+```
+``` haskell
+  If True && True = True
+  If True && False = False
+  If False && False = False
+  If False && True = False
+  
+  If false is in the statement then the answer will be false.
+```
+
+- Give three possible definitions for the logical or operator (`||`)
+   using pattern matching.\
+``` haskell
+  If True || True = True
+  If False || True = True
+  If False || False = False
+```
+
+- What does the `init` function in Prelude[^prelude] do? Define `init` in
+  terms of functions `length` and `take`.\
+  init takes the last item of a list and drops it. Find length of list and take on it. Equation would be\
+``` haskell
+take (length[list] - 1) [list]
+```
+
+[^prelude]: Prelude is a standard module loaded by default when you start `ghci`. Information about Prelude can be found on the [Prelude Hackage page](https://hackage.haskell.org/package/base-4.9.0.0/docs/Prelude.html).
+
+# List Comprehension
+
+a. A positive integer is _perfect_ if it equals the sum of all of its
+factors, excluding the number itself. Using a list comprehension, define
+a function
+``` haskell
+  perfects :: Int -> [Int]
+  perfects n = undefined
+  'try using zip'
+```
+Sudocode:
+``` haskell
+  list = 2^{x-1} | x <- [1..]
+  sum [list] * drop (length(list)) [list] = perfect #s
+```
+
+that returns the list of all perfect numbers up to a given limit, such that, e.g.:
+``` {padding-left:1ex; padding-right:1ex; padding-top:.75ex; padding-bottom:.25ex; background-color:black; color:white; font-size:14pt }
+Prelude λ> perfects 500
+[6,28,496]
+```
+
+- The _scalar product_ of two lists of integers `xs` and `ys` of length `n` is
+  give by the sum of the products of the corresponding integers:
+  ~ Equation
+    \sum_{i=0}^{n-1} (xs_i * ys_i)
+  ~
+  Using a list comprehension, define a function that returns the scalar
+  product of two lists. (*Hint: You could start from the following program stub.*)
+  ``` Haskell
+    scalarProduct :: [Int] -> [Int] -> Int
+    scalarProduct xs ys = undefined
+  ```
