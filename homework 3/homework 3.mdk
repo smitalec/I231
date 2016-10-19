@@ -1,0 +1,115 @@
+Title         : Homework 3
+Title Note    : Due on Oct 19 Wednesday
+Author        : Alec Smith
+Email         : smitalec@indiana.edu
+Doc class     : [11pt]article
+
+~ MathDefs
+\newcommand{\jacobi}[2]{\ensuremath{\left(\frac{#1}{#2}\right)}}
+~
+
+
+[TITLE]
+
+# Define the following library functions using recursion:
+a. Produce a list with n identical elements:
+``` haskell
+  replicate :: Int -> a -> [a]
+  replicate 1 x = [x]
+  replicate n x = []: 1..n
+```
+
+- Select the nth element of a list:
+``` haskell
+(!!) :: [a] -> Int -> a
+xs !! i = !! (xs !! i)
+```
+
+- Decide if a value is an element of a list:
+``` haskell
+elem :: Eq a => a -> [a] -> Bool
+elem a [a] = TRUE
+elem a [b,c] = FALSE
+```
+
+
+# Merge and Sort
+a. Define a recursive function
+``` haskell
+merge :: Ord a => [a] -> [a] -> [a]
+merge [a] = [a]
+merge [x:xs] [y:ys] = []
+```
+that merges two sorted lists of values to give a single sorted list.  For example:
+``` {padding-left:1ex; padding-right:1ex; padding-top:.75ex; padding-bottom:.25ex; background-color:black; color:white; font-size:14pt }
+Prelude λ> merge [2,5,6] [1,3,4]
+[1,2,3,4,5,6]
+```
+b. Define a recursive function
+``` haskell
+  msort :: Ord a => [a] -> [a]
+  msort [x] = [x]
+  msort [x] = msort (merge [x])
+```
+that implements merge sort, which can be specified by the following two rules:
+  * Lists of length  1 are already sorted;
+  * Other lists can be sorted by sorting the two halves and merging the resulting lists. 
+\
+
+# Higher-order functions
+a. Express the comprehension 
+``` haskell 
+  [f x | x  xs, p x] 
+  map(filter x)
+``` 
+using the functions `map` and `filter`.
+
+* Redefine `map f` and `filter p` using `foldr`. (Hint: What is the type of `map f`? And how about the type of `filter p`?)\
+``` haskell
+foldr(filter x (map x)))
+```
+map f and filter p are both curried functions
+
+# Number representations and Arithmetics
+
+a. Convert (8729)~12~ into its octet (base-8) representation.\
+    (35021)~8~
+
+*  Write a haskell function that converts any base-8 (_octet_) number into its base-6 (_senary_) form.
+``` haskell
+  octet2senary :: [Int] -> [Int]
+  octet2senary xs = (xs * 8^{position} + x) * ([(xs-d~0~)/b] mod b) 
+```
+For example, to obtain the senary representation of (345)~8~, you can call
+``` {padding-left:1ex; padding-right:1ex; padding-top:.75ex; padding-bottom:.25ex; background-color:black; color:white; font-size:14pt }
+Prelude λ> octet2senary [3,4,5]    
+[1,0,2,1]
+```
+to get (1021)~6~.
+
+*  Write a Haskell function that adds two base-8 numbers represented as lists. For example, to add (6273)~8~ and (7712)~8~ in `ghci`, you type
+``` {padding-left:1ex; padding-right:1ex; padding-top:.75ex; padding-bottom:.25ex; background-color:black; color:white; font-size:14pt }
+Prelude λ> addoctets [6,2,7,3] [7,7,1,2]    
+[1,6,1,8,5]
+```
+You can use the following code stub to get yourself started.
+
+** Isn't 8 impossible to get in base-8 numbers??
+``` haskell
+  addoctets :: [Int] -> [Int] ->[Int]
+  addoctets = 1 + 1 = 2
+  addoctets = 6 + 6 = 14
+``` 
+
+# Bonus Problems 
+* **[10 points]** Write a Haskell function that multiplies two base-`b` numbers.
+``` haskell
+  mult :: Int -> [Int] -> [Int] ->[Int]
+  mult = undefined
+``` 
+ 
+* **[10 points]** Write a Haskell function that divides two base-`b` numbers.
+``` haskell
+  divmod :: Int -> [Int] -> [Int] ->[Int]
+  divmod = undefined
+``` 
