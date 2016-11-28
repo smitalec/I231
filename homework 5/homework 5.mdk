@@ -1,0 +1,140 @@
+Title         : Homework 5
+Title Note    : Due on Nov 28 Monday
+Author        : Alec Smith
+Email         : smitalec@indiana.edu
+Doc class     : [11pt]article
+
+~ MathDefs
+\newcommand{\jacobi}[2]{\ensuremath{\left(\frac{#1}{#2}\right)}}
+~
+
+
+[TITLE]
+\
+\
+
+For every problem below, **you must show detailed derivation steps.**
+
+# Groups
+a. **[0.25 point]** What is $\mathbb{Z}^+_3$ and $\mathbb{Z}^+_5$? What is $\mathbb{Z}^\times_3$ and $\mathbb{Z}^\times_5$\
+      $\mathbb{Z}^+_3$ = {0,1,2,}\
+      $\mathbb{Z}^+_5$ = {0,1,2,3,4}\
+      $\mathbb{Z}^\times_3$ = {1,2} \
+      $\mathbb{Z}^\times_5$ = {1,2,3,4} \
+
+*  **[0.25 point]** Abbreviating $\mathbb{Z}^+_n$ by $\mathbb{Z}_n$. Define $\mathbb{Z}_p\times\mathbb{Z}_q$ to be the set $\{(g,h) | g\in\mathbb{Z}_p, h\in\mathbb{Z}_q\}$. Enumerate all the elements of $\mathbb{Z}_3\times\mathbb{Z}_5$?
+
+    $\mathbb{Z}_3\times\mathbb{Z}_5$ = {(0,0), (0,1), (0,2), (0,3), (0,4), (1,0), (1,1), (1,2), (1,3), (1,4), (2,0), (2,1), (2,2), (2,3), (2,4)}
+
+*  **[1 point]** For every $(g_1, h_1), (g_2, h_2)\in\mathbb{Z}_3\times\mathbb{Z}_5$, define "$+$" as 
+~ math
+(g_1,h_1)+(g_2,h_2) = (g_1+g2 \mathrm{mod} 3, h1+h2 \mathrm{mod} 5).
+~
+Prove that $\mathbb{Z}_3\times\mathbb{Z}_5$ is a group under the definition of "$+$".
+
+*  **[1 points]** Find a definition of "$\times$" over $\mathbb{Z}_3\times\mathbb{Z}_5$ such that $\mathbb{Z}_3\times\mathbb{Z}_5$ is a group respect to your definition of "$\times$", and prove it.
+ 
+    {0,1,2} * {0,1,2,3,4} \
+    Group each number of the first group and pair it with the second.
+# Extended Euclidean and Greatest Common Divisors
+a. **[1.5 points]** For every pair of $a$ and $b$ below, find integers $x$ and $y$ such that 
+~ math
+ax+by=\mathrm{gcd}(a,b).
+~
+\
+  (1) $a=12, b=35$.\
+      gcd(12,35) = 1\
+      12x + 35y = 1\
+      x = 3 and y = -1\
+       
+  (2) $a=21, b=28$.\
+      gcd(21,28) = 7\
+      21x + 28y = 7\
+      x = -1 and y = 1
+  
+  
+   
+*  **[1 point]** Write a Haskell function `extended_euclidean` *on your own* to automates your mechanical work above.
+``` haskell
+    eeuc :: (Int, Int) -> (Int, Int)
+    eeuc (a,0) = 0
+    eeuc (1,b) = 1
+    eeuc (a,b) = 
+```
+# Chinese Remainder Theorem
+a. **[2 points]** For each one of the below, If such an integer $x$ exists, find the minimal  positive $x$ that satisfies each one of the following; otherwise, explain why such $x$ cannot be found.\
+  (1)
+~ math
+\left\{\begin{array}{l}
+  2x = 5 \mod 17\\
+  3x + 1 = 9 \mod 13.
+\end{array}\right.
+~
+let n = 17k + 2.5, so 3(17k + 2.5) + 1 = 9 mod 13\
+51k + 8.5 = 9 mod 13\
+51k = .5 mod 13\
+x cannot be found here because it is a negative fraction.\
+\
+  (2)
+  ~ math
+\left\{\begin{array}{l}
+  x = 5 \mod 15\\
+  3x + 1 = 9 \mod 25.
+\end{array}\right.
+~
+let n = 15k + 5, so 3(15k + 3) + 1 = 9 mod 25\
+45k + 10 = 9 mod 25\
+45k = -1 mod 25\
+    = 45 mod 25
+
+
+* **[0.5 point]** Write a Haskell function on your own that solves any equation systems of the following form for input integer arguments $a, b, c, d$.
+~ math
+\left\{\begin{array}{l}
+  x = a \mod b\\
+  x = c \mod d.
+\end{array}\right.
+~ 
+``` haskell
+  crt :: (Int, Int) -> (Int, Int) -> Int
+  crt (a,b) = 
+```
+
+# Euler's Theorem and Chinese Remainder Theorem
+
+a. **[0.5 point]** Let $\phi$ be the Euler's totient function. Calculate $\phi(36)$.\
+~ math
+  36 = 2^2 + 3^2
+     = 36(1 - \frac{1}{2}) * (1 - \frac{1}{3})
+     = 12 
+~
+
+* **[2 points]** Without using a calculator, compute $2016^{11} \mod 24$.
+~ math
+    23
+~
+
+# (Optional) Bonus problems (Step details are required to earn points.)
+a. [2 points] Write a Haskell function to solve the following system of modulo equations for $x$, where $a,b,c,m,n,k$ are input parameters.
+~ math
+\left\{\begin{array}{l}
+  x = a \mod m\\
+  x = b \mod n\\
+  x = c \mod k.
+\end{array}\right.
+~
+``` haskell
+         crt3 :: (Int, Int) -> (Int, Int) -> (Int, Int) -> Int
+         crt3 = undefined
+``` 
+
+* [4 points] Write a Haskell function to solve the following system of modulo equations for $x$, where for all positive integer $i$, $a_i, m_i$ are positive integer inputs.
+~ math
+  x = a_i \mod m_i   \qquad \mbox{ for all } i
+~
+``` haskell
+         crt_n :: [(Int, Int)] -> Int
+         crt_n = undefined
+``` 
+
+* [4 points] Calculate with pen and paper $(24^{1000}\times25^{1001}) \mod 2016$.
