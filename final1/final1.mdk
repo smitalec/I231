@@ -1,0 +1,45 @@
+Title         : Final Exam
+Title Note    : noon, Dec 13 (Tuesday) – 10:00am Dec 15 (Thursday)
+Author        : Alec Smith
+Email         : smitalec@indiana.edu
+Doc class     : [11pt]article
+
+[TITLE]
+
+Take-home exam policy (IMPORTANT): You cannot use Internet to complete your take-home exam. You cannot collaborate with others. We will strictly enforce the policy by starting IU Student Disciplinary Procedures on suspicious submissions. Once confirmed, the course grades for ALL involved students will be marked as “F”.
+
+Pledge: I did not offer nor receive any help on this final exam.
+
+                          Sign (with Initials): _______AS________
+
+1. \
+Base: if n=0 LHS = 1 RHS = 1\
+Inductive: for a given k, (1+x)^n >= 1 + nx\
+Induction: prove holds for n=k+1\
+LHS = (1+0)^(k+1) = 1^(k+1)\
+RHS = 1+(k+1)0 = 1\
+1^(k+1) >= 1
+
+
+2. \
+12^15 mod 2016 = 12^11 * 12^4 mod 2016\
+12^11 = 1\
+12^4 mod 2016 = 576\
+576 * 3 = 1728\
+12^15 mod 2016 = 1728
+
+
+
+3. \
+(1) \
+       X(s)=100, 200, 0
+       P(s)=1/3, 1/3, 1/3
+       100 * 1/3 + 200 * 1/3 + 0 * 1/3= 99.99
+   (2) \
+       100 * 1/2 + 200 * 1/2 = 150
+       OR 100 * 1/2 + 0 * 1/2 = 50
+       OR 200 * 1/2 + 0 * 1/2 = 100
+       expected outcome = 100
+   (3) 1/3
+
+4. submitted with this file
